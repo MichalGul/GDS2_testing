@@ -19,8 +19,6 @@ func _input_event(viewport, event, shape_idx):
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
 		queue_free()
 
-
-
-
 func _on_RockTap_body_entered(body):
-	print("COS WESZLO")
+	if body.is_in_group("Player"):
+		queue_free()

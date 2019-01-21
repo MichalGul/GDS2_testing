@@ -6,7 +6,7 @@ enum States {INIT, ALIVE, INVULNERABLE, DEAD}
 var state = null
 
 var motion = Vector2()
-export (float) var basic_speed = 80
+export (float) var basic_speed = 0
 #how much speed increase over time
 export (float) var speed_increase_factor = 0
 export (int) var time_increase = 1
