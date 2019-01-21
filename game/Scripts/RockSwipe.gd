@@ -15,6 +15,9 @@ var final_touch = Vector2(0,0)
 var thrown = false
 var lifted = false
 
+func init(pos):
+	global_position = pos
+
 onready var touched = false
 
 #BASIC SWIPE TESTING
@@ -49,10 +52,11 @@ onready var touched = false
 #	pass
 #
 func _process(delta):
-	print(direction)
+	#print(direction)
+	pass
 #
-#func _on_VisibilityNotifier2D_screen_exited():
-#	queue_free()
+func _on_VisibilityNotifier2D_screen_exited():
+	queue_free()
 #
 #
 #TRY DRAG WORKAROUND
@@ -65,6 +69,7 @@ func _on_TouchArea_input_event(viewport, event, shape_idx):
 	if event.is_action_released("ui_touch"):
 		print("realeased rock")
 		touched = false
+		#Add fore impulse or tween
 		direction = 0
 		
 	if touched:

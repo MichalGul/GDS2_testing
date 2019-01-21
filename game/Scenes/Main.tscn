@@ -1,13 +1,17 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/space_background.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Camera2D.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Rock.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/RockSwipe.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Borderd.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Gamestate.gd" type="Script" id=1]
+[ext_resource path="res://assets/space_background.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Camera2D.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Rock.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/RockSwipe.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Borderd.tscn" type="PackedScene" id=7]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+spawn_obstackle_timer = 1
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." index="0"]
 
@@ -35,63 +39,74 @@ _sections_unfolded = [ "Motion" ]
 [node name="Background" type="Sprite" parent="ParallaxBackground/ParallaxLayer" index="0"]
 
 position = Vector2( 9.31787, -251.586 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 centered = false
 offset = Vector2( -20, 0 )
 _sections_unfolded = [ "Offset" ]
 
 [node name="Player" parent="." index="1" groups=[
 "Player",
-] instance=ExtResource( 2 )]
+] instance=ExtResource( 3 )]
 
 position = Vector2( 210.371, 661.921 )
 rotation = -0.00089705
-basic_speed = 50.0
+basic_speed = 200.0
 
-[node name="Camera2D" parent="Player" index="2" instance=ExtResource( 3 )]
+[node name="Camera2D" parent="Player" index="2" instance=ExtResource( 4 )]
 
-position = Vector2( 28.7113, -4.07526 )
+position = Vector2( 2.22209, -264.648 )
 limit_left = 0
 editor_draw_limits = true
 _sections_unfolded = [ "Editor", "Limit" ]
 
-[node name="Rock" parent="." index="2" instance=ExtResource( 4 )]
+[node name="Rock" parent="." index="2" instance=ExtResource( 5 )]
 
 position = Vector2( 331.615, 275.843 )
 
-[node name="Rock2" parent="." index="3" instance=ExtResource( 4 )]
+[node name="Rock2" parent="." index="3" instance=ExtResource( 5 )]
 
 position = Vector2( 140.182, 459.739 )
 
-[node name="Rock3" parent="." index="4" instance=ExtResource( 4 )]
+[node name="Rock3" parent="." index="4" instance=ExtResource( 5 )]
 
 position = Vector2( 343.673, 595.399 )
 
-[node name="RockSwipe" parent="." index="5" instance=ExtResource( 5 )]
+[node name="RockSwipe" parent="." index="5" instance=ExtResource( 6 )]
 
-position = Vector2( 222.698, 535.512 )
+position = Vector2( 236.06, 129.657 )
 rotation = 0.00293654
 
-[node name="StaticBody2D" parent="." index="6" instance=ExtResource( 6 )]
+[node name="StaticBody2D" parent="." index="6" instance=ExtResource( 7 )]
 
 position = Vector2( 204.308, 12.1884 )
 scale = Vector2( 3.00047, 1 )
 
-[node name="StaticBody2D2" parent="." index="7" instance=ExtResource( 6 )]
+[node name="StaticBody2D2" parent="." index="7" instance=ExtResource( 7 )]
 
 position = Vector2( 234.371, 745.399 )
 scale = Vector2( 3.00047, 1 )
 
-[node name="StaticBody2D3" parent="." index="8" instance=ExtResource( 6 )]
+[node name="StaticBody2D3" parent="." index="8" instance=ExtResource( 7 )]
 
 position = Vector2( 3.47508, 365.728 )
 rotation = -1.5589
 scale = Vector2( 4.07977, 1 )
 
-[node name="StaticBody2D4" parent="." index="9" instance=ExtResource( 6 )]
+[node name="StaticBody2D4" parent="." index="9" instance=ExtResource( 7 )]
 
 position = Vector2( 464.446, 374.079 )
 rotation = -1.5589
 scale = Vector2( 4.07977, 1 )
+
+[node name="Obstacke_spawn_timer" type="Timer" parent="." index="10"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+
+[node name="Obstackles" type="Node2D" parent="." index="11"]
+
+[connection signal="timeout" from="Obstacke_spawn_timer" to="." method="_on_Obstacke_spawn_timer_timeout"]
 
 
