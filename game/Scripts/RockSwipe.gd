@@ -60,6 +60,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 #
 #
 #TRY DRAG WORKAROUND
+
 func _on_RockSwipe_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("ui_touch"):
 		print("touched rock")

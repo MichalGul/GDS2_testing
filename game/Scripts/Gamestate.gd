@@ -22,6 +22,8 @@ func _ready():
 #	pass
 
 func spawn_obstackle():
+	#Spawn random obstackle in front of the player above camera
+	
 	randomize()
 	var rand_obstackle = obstackles[randi() % obstackles.size()]
 	print(rand_obstackle)
@@ -37,7 +39,5 @@ func spawn_obstackle():
 		obstackle.init(spawn_pos)
 	
 	
-	
-
 func _on_Obstacke_spawn_timer_timeout():
 	spawn_obstackle()
