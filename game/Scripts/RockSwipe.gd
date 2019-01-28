@@ -61,35 +61,37 @@ func _on_VisibilityNotifier2D_screen_exited():
 #
 #TRY DRAG WORKAROUND
 
-func _on_RockSwipe_input_event(viewport, event, shape_idx):
-	if event.is_action_pressed("ui_touch"):
-		print("touched rock")
-		touched = true
-
-func _on_TouchArea_input_event(viewport, event, shape_idx):
-	if event.is_action_released("ui_touch"):
-		print("realeased rock")
-		touched = false
-		#Add fore impulse or tween
-		direction = 0
+#func _on_RockSwipe_input_event(viewport, event, shape_idx):
+#	if event.is_action_pressed("ui_touch"):
+#		print("touched rock")
+#		touched = true
+#
+#func _on_TouchArea_input_event(viewport, event, shape_idx):
+#	if event.is_action_released("ui_touch"):
+#		print("realeased rock")
+#		touched = false
+#		#Add fore impulse or tween
+#		direction = 0
+#
+#	if touched:
+#		if event is InputEventScreenDrag:
+#			print("gets dragged")
+#			print("ply:", position)
+#			print("pos: ", event.position)
+#			print("rel: ", event.relative)
+#			print("vel: ", event.speed)
+#			direction = event.speed
+#
+#			#Move the obstackle hardcode
+#			#position = position + event.relative
+#
+#			#Move the obstackle with collision
+#			move_and_collide(event.relative)
+			
+			
+			
 		
-	if touched:
-		if event is InputEventScreenDrag:
-			print("gets dragged")
-			print("ply:", position)
-			print("pos: ", event.position)
-			print("rel: ", event.relative)
-			print("vel: ", event.speed)
-			direction = event.speed
-			
-			#Move the obstackle hardcode
-			#position = position + event.relative
-			
-			#Move the obstackle with collision
-			move_and_collide(event.relative)
-			
-			
-			
+		
 		
 #WORKING CLICK AND DRAG!!!!
 #func _unhandled_input(event):
@@ -104,6 +106,5 @@ func _on_TouchArea_input_event(viewport, event, shape_idx):
 
 
 
-
-
-
+func _on_SwipeDetector_swiped(direction):
+	print("Swiped to: ", direction)

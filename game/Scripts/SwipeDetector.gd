@@ -10,6 +10,17 @@ onready var timer = $Timer
 var swipe_start_position = Vector2()
 
 func _input(event):
+#	if not event is InputEventScreenTouch:
+#		return
+#	if event.pressed:
+#		_start_detection(event.position)
+#	elif not timer.is_stopped():
+#		_end_detection(event.position)
+	pass
+
+
+
+func _on_TouchArea_input_event(viewport, event, shape_idx):
 	if not event is InputEventScreenTouch:
 		return
 	if event.pressed:
@@ -35,3 +46,6 @@ func _end_detection(position):
 
 func _on_Timer_timeout():
 	emit_signal('swipe_canceled', swipe_start_position)
+
+
+

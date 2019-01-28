@@ -26,18 +26,19 @@ func spawn_obstackle():
 	
 	randomize()
 	var rand_obstackle = obstackles[randi() % obstackles.size()]
-	print(rand_obstackle)
+	#print(rand_obstackle)
 	
 	var player_pos = Global.Player.global_position
 	var spawn_pos = Vector2()
 	spawn_pos.y = player_pos.y - screen_size_y
 	spawn_pos.x = player_pos.x
 	
-	if rand_obstackle:
+	if rand_obstackle: # if not null
 		var obstackle = rand_obstackle.instance()
 		$Obstackles.add_child(obstackle)
 		obstackle.init(spawn_pos)
-	
+	else:
+		print("obstackle not spawned")
 	
 func _on_Obstacke_spawn_timer_timeout():
 	spawn_obstackle()

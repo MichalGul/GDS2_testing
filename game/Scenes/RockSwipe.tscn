@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/RockSwipe.gd" type="Script" id=1]
 [ext_resource path="res://assets/rock.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/SwipeDetector.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -11,9 +12,9 @@ radius = 43.5861
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 196.556, 43 )
+extents = Vector2( 244.266, 69.3429 )
 
-[node name="RockSwipe" type="KinematicBody2D"]
+[node name="RockSwipe" type="KinematicBody2D" index="0"]
 
 input_pickable = true
 collision_layer = 2
@@ -54,10 +55,21 @@ _sections_unfolded = [ "Collision" ]
 
 shape = SubResource( 2 )
 
+[node name="SwipeDetector" parent="." index="4" instance=ExtResource( 3 )]
+
+[node name="Timer" parent="SwipeDetector" index="0"]
+
+wait_time = 0.3
+
 [connection signal="input_event" from="." to="." method="_on_RockSwipe_input_event"]
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 
+[connection signal="input_event" from="TouchArea" to="SwipeDetector" method="_on_TouchArea_input_event"]
+
 [connection signal="input_event" from="TouchArea" to="." method="_on_TouchArea_input_event"]
 
+[connection signal="swiped" from="SwipeDetector" to="." method="_on_SwipeDetector_swiped"]
 
+
+[editable path="SwipeDetector"]
