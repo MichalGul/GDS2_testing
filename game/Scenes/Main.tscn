@@ -50,7 +50,6 @@ _sections_unfolded = [ "Offset" ]
 
 position = Vector2( 210.371, 661.921 )
 rotation = -0.00089705
-basic_speed = 200.0
 
 [node name="Camera2D" parent="Player" index="2" instance=ExtResource( 4 )]
 
@@ -75,6 +74,7 @@ position = Vector2( 343.673, 595.399 )
 
 position = Vector2( 236.06, 129.657 )
 rotation = 0.00293654
+impulse_value_x = 400.0
 
 [node name="StaticBody2D3" parent="." index="6" instance=ExtResource( 7 )]
 

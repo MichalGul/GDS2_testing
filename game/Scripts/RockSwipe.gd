@@ -1,6 +1,10 @@
-extends KinematicBody2D
+extends RigidBody2D
 
 export (int) var swipe_friction = 1
+#force value of the swipe push in x direction
+export (float) var impulse_value_x = 200
+#force value of the swipe push in y direction
+export (float) var impulse_value_y = -15
 
 
 var elapsed_time = 0
@@ -15,13 +19,13 @@ var final_touch = Vector2(0,0)
 var thrown = false
 var lifted = false
 
+
 func init(pos):
 	global_position = pos
 
 onready var touched = false
 
 #BASIC SWIPE TESTING
-
 #func _input_event(viewport, event, shape_idx):
 #	if Input.is_mouse_button_pressed(BUTTON_LEFT):
 #		thrown = true
@@ -88,11 +92,6 @@ func _on_VisibilityNotifier2D_screen_exited():
 #			#Move the obstackle with collision
 #			move_and_collide(event.relative)
 			
-			
-			
-		
-		
-		
 #WORKING CLICK AND DRAG!!!!
 #func _unhandled_input(event):
 #	if event is InputEventMouseButton and not event.pressed:
@@ -103,8 +102,12 @@ func _on_VisibilityNotifier2D_screen_exited():
 #func _input_event(viewport, event, shape_idx):
 #	if event is InputEventMouseButton and event.pressed:
 #		lifted = true
-
-
+func destroy():
+	#play destroy Anim
+	queue_free()
 
 func _on_SwipeDetector_swiped(direction):
+	#Handle swipe detection on object
 	print("Swiped to: ", direction)
+	apply_impulse(direction, Vector2(impulse_value_x * -direction.x, impulse_value_y))
+	$AnimationPlayer.play("fade_out")
